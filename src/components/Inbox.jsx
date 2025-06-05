@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   MdCropSquare,
   MdKeyboardArrowLeft,
@@ -8,8 +8,28 @@ import {
 import { FaCaretDown, FaUserFriends } from "react-icons/fa";
 import { IoMdRefresh, IoMdMore } from "react-icons/io";
 import { GoTag } from "react-icons/go";
+import Message from "./Message";
 
 const Inbox = () => {
+  const [activeTab, setActiveTab] = useState(0);
+  const mailArray = [
+    {
+      mailType: <MdInbox size={"20px"} />,
+      name: "Primary",
+    },
+    {
+      mailType: <MdInbox size={"20px"} />,
+      name: "Promotions",
+    },
+    {
+      mailType: <MdInbox size={"20px"} />,
+      name: "Social",
+    },
+  ];
+
+  const setActive = (i) => {
+    setActiveTab(i);
+  };
   return (
     <div className="flex-1 bg-white rounded-xl mx-5">
       {/* Top Toolbar */}
@@ -41,23 +61,26 @@ const Inbox = () => {
       <div className="h-[90vh] overflow-y-auto">
         {/* Tab Buttons */}
         <div className="flex items-center gap-1">
-          <button className="flex items-center gap-5 p-4 border-b-4 border-b-blue-600 text-blue-600 w-52 hover:bg-gray-100">
-            <MdInbox size={"20px"} />
-            <span>Primary</span>
-          </button>
-          <button className="flex items-center gap-5 p-4 border-b-4 border-b-transparent w-52 hover:bg-gray-100">
-            <GoTag size={"20px"} />
-            <span>Promotions</span>
-          </button>
-          <button className="flex items-center gap-5 p-4 border-b-4 border-b-transparent w-52 hover:bg-gray-100">
-            <FaUserFriends size={"20px"} />
-            <span>Social</span>
-          </button>
+          {mailArray.map((mail, index) => (
+            <button
+              onClick={() => {
+                setActiveTab(index);
+              }}
+              className={`w-52 flex items-center gap-5 p-4 border-b-4  hover:bg-gray-100 ${
+                activeTab === index
+                  ? "border-b-4 border-blue-600 text-blue-600 bg-blue-50"
+                  : "border-b-4 border-transparent text-gray-700 hover:bg-gray-100"
+              }`}
+            >
+              {mail.mailType}
+              <span>{mail.name}</span>
+            </button>
+          ))}
         </div>
 
         {/* Messages Placeholder */}
         <div className="p-4 text-gray-500">
-          [Messages will be displayed here]
+          <Message />
         </div>
       </div>
     </div>
