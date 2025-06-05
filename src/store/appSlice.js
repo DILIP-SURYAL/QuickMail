@@ -5,8 +5,8 @@ const appSlice = createSlice({
   initialState: {
     open: false,
     selectedMail: null,
-    searchText: null,
-    emails: null,
+    searchText: "",
+    emails: [],
     authUser: null,
   },
   reducers: {

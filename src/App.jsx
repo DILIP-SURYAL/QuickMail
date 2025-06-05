@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar";
 import Body from "./components/Body";
 import Inbox from "./components/Inbox";
 import Mail from "./components/Mail";
-
+import SendEmail from "./components/SendEmail";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -25,6 +25,9 @@ const App = () => {
     <>
       <Navbar />
       <RouterProvider router={router} />
+      <div className="absolute w-[30%] bottom-0 right-20 z-10">
+        <SendEmail />
+      </div>
     </>
   );
 };

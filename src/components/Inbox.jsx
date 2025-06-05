@@ -9,6 +9,7 @@ import { FaCaretDown, FaUserFriends } from "react-icons/fa";
 import { IoMdRefresh, IoMdMore } from "react-icons/io";
 import { GoTag } from "react-icons/go";
 import Message from "./Message";
+import Messages from "./Messages";
 
 const Inbox = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -80,7 +81,7 @@ const Inbox = () => {
 
         {/* Messages Placeholder */}
         <div className="p-4 text-gray-500">
-          <Message />
+          <Messages />
         </div>
       </div>
     </div>
